@@ -10,10 +10,8 @@ export default defineConfig({
   // react
   minify: true,
   sourcemap: true,
-  splitting: true,
   target: 'es6',
   bundle: true,
-  // external: ['react', 'react-dom', 'classnames'],
   loader: {
     '.svg': 'dataurl',
   },
