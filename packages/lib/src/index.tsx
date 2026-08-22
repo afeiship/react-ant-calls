@@ -1,4 +1,4 @@
-import { createContext, useContext, type ReactNode } from 'react';
+import { createContext, useContext, useMemo, type ReactNode } from 'react';
 import type { Callable } from 'react-call';
 import { Alert, type AlertProps } from './alert';
 import { Confirm, type ConfirmProps } from './confirm';
@@ -16,20 +16,22 @@ export interface Calls {
   notif: typeof notif;
 }
 
-const CallsContext = createContext<Calls>(null!);
+const CallsContext = createContext<Calls | null>(null);
 
 export function CallsProvider({ children }: { children: ReactNode }) {
+  const value = useMemo(
+    () => ({
+      alert: Alert,
+      confirm: Confirm,
+      prompt: Prompt,
+      dialog: Dialog,
+      msg,
+      notif,
+    }),
+    []
+  );
   return (
-    <CallsContext.Provider
-      value={{
-        alert: Alert,
-        confirm: Confirm,
-        prompt: Prompt,
-        dialog: Dialog,
-        msg,
-        notif,
-      }}
-    >
+    <CallsContext.Provider value={value}>
       <Alert />
       <Confirm />
       <Prompt />
@@ -40,7 +42,9 @@ export function CallsProvider({ children }: { children: ReactNode }) {
 }
 
 export function useCalls() {
-  return useContext(CallsContext);
+  const ctx = useContext(CallsContext);
+  if (!ctx) throw new Error('useCalls must be used within a <CallsProvider>');
+  return ctx;
 }
 
 export type { AlertProps, ConfirmProps, PromptProps, DialogProps };
