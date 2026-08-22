@@ -45,8 +45,7 @@
     "react-dom": "*",
     "antd": "*",
     "@ant-design/icons": "*",
-    "react-call": "^2.0.0",
-    "classnames": "*"
+    "react-call": "^2.0.0"
   },
   "publishConfig": {
     "access": "public",

@@ -50,4 +50,10 @@ export function useCalls() {
 export type { AlertProps, ConfirmProps, PromptProps, DialogProps };
 export type { NotificationArgs } from './notification';
 export { createCallableModal, type CallableModalApi, type CallableModalRenderProps } from './create-callable-modal';
+export { Alert } from './alert';
+export { Confirm } from './confirm';
+export { Prompt } from './prompt';
+export { Dialog, useDialogClose } from './dialog';
+export { msg } from './msg';
+export { notif } from './notification';
 export * from 'react-call';
