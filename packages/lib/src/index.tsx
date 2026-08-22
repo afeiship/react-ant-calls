@@ -1,32 +1,49 @@
-// import noop from '@jswork/noop';
-import cx from 'classnames';
-import { ReactNode, Component, HTMLAttributes } from "react";
+import { createContext, useContext, type ReactNode } from 'react';
+import type { Callable } from 'react-call';
+import { Alert, type AlertProps } from './alert';
+import { Confirm, type ConfirmProps } from './confirm';
+import { Prompt, type PromptProps } from './prompt';
+import { Dialog, type DialogProps } from './dialog';
+import { msg } from './msg';
+import { notif } from './notification';
 
-const CLASS_NAME = "react-ant-calls";
-// const uuid = () => Math.random().toString(36).substring(2, 9);
-export type ReactAntCallsProps = {
-  /**
-   * The extended className for component.
-   * @default ''
-   */
-  className?: string;
-  /**
-   * The children element.
-   */
-  children?: ReactNode;
-} & HTMLAttributes<HTMLDivElement>;
-
-export default class ReactAntCalls extends Component<ReactAntCallsProps> {
-  static displayName = CLASS_NAME;
-  static version = "__VERSION__";
-  static defaultProps = {};
-
-  render() {
-    const { className, children,...rest } = this.props;
-    return (
-      <div data-component={CLASS_NAME} className={cx(CLASS_NAME, className)} {...rest}>
-        {children}
-      </div>
-    );
-  }
+export interface Calls {
+  alert: Callable<AlertProps, void>;
+  confirm: Callable<ConfirmProps, boolean>;
+  prompt: Callable<PromptProps, string | null>;
+  dialog: Callable<DialogProps, boolean>;
+  msg: typeof msg;
+  notif: typeof notif;
 }
+
+const CallsContext = createContext<Calls>(null!);
+
+export function CallsProvider({ children }: { children: ReactNode }) {
+  return (
+    <CallsContext.Provider
+      value={{
+        alert: Alert,
+        confirm: Confirm,
+        prompt: Prompt,
+        dialog: Dialog,
+        msg,
+        notif,
+      }}
+    >
+      <Alert />
+      <Confirm />
+      <Prompt />
+      <Dialog />
+      {children}
+    </CallsContext.Provider>
+  );
+}
+
+export function useCalls() {
+  return useContext(CallsContext);
+}
+
+export type { AlertProps, ConfirmProps, PromptProps, DialogProps };
+export type { NotificationArgs } from './notification';
+export { createCallableModal, type CallableModalApi, type CallableModalRenderProps } from './create-callable-modal';
+export * from 'react-call';
