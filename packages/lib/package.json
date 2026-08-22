@@ -33,14 +33,20 @@
     "jsdom": "^29.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "antd": "^5.0.0",
+    "@ant-design/icons": "^5.0.0",
+    "react-call": "^2.0.2",
     "tsup": "^8.2.4",
     "typescript": "^5.2.2",
     "vitest": "^4.1.2"
   },
   "peerDependencies": {
-    "classnames": "*",
     "react": "*",
-    "react-dom": "*"
+    "react-dom": "*",
+    "antd": "*",
+    "@ant-design/icons": "*",
+    "react-call": "^2.0.0",
+    "classnames": "*"
   },
   "publishConfig": {
     "access": "public",
