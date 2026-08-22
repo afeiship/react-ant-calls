@@ -11,24 +11,32 @@ npm install -S @jswork/react-ant-calls
 ```
 
 ## usage
-  ```js
-  import ReactAntCalls from '@jswork/react-ant-calls';
-  import '@jswork/react-ant-calls/dist/style.scss';
+  ```jsx
+  import { CallsProvider, useCalls } from '@jswork/react-ant-calls';
 
-  function App() {
+  // main.tsx — 应用根部挂载一次
+  function Root() {
     return (
-      <div className="m-10 p-4 shadow bg-gray-100 text-gray-800 hover:shadow-md transition-all">
-        <div className="badge badge-warning absolute right-0 top-0 m-4">
-          Build Time: {BUILD_TIME}
-        </div>
-        <ReactAntCalls className="debug-red">
-          abc
-        </ReactAntCalls>
-      </div>
+      <CallsProvider>
+        <App />
+      </CallsProvider>
     );
   }
 
-  export default App;
+  // 任意子组件中调用
+  function App() {
+    const { alert, confirm, prompt, dialog, msg, notif } = useCalls();
+
+    const handleDelete = async () => {
+      const ok = await confirm.call({
+        title: '删除确认',
+        content: '删除后不可恢复，确定继续？',
+      });
+      if (ok) msg.success('已删除');
+    };
+
+    return <button onClick={handleDelete}>删除</button>;
+  }
   ```
 
 ## preview
