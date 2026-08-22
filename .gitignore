@@ -3,6 +3,7 @@ bower_components
 coverage
 npm-debug.log
 yarn.lock
+pnpm-lock.yaml
 package-lock.json
 .DS_Store
 

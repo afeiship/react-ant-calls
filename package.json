@@ -9,11 +9,11 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "cd packages/example && yarn run dev",
+    "dev": "pnpm --filter example dev",
     "docs": "node scripts/markdown.js",
-    "pre:build": "yarn run docs",
-    "test": "cd packages/lib && yarn run test",
-    "build": "cd packages/lib && yarn run build",
-    "publish": "cd packages/lib && yarn run release"
+    "pre:build": "pnpm run docs",
+    "test": "pnpm --filter @jswork/react-ant-calls test",
+    "build": "pnpm --filter @jswork/react-ant-calls build",
+    "publish": "pnpm --filter @jswork/react-ant-calls release"
   }
 }

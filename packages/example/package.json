@@ -17,7 +17,7 @@
     "@jswork/next": "^1.2.2",
     "@jswork/next-replace-in-file": "^1.0.0",
     "@jswork/presets-tailwind": "^1.1.8",
-    "@jswork/react-ant-calls": "^1.0.0",
+    "@jswork/react-ant-calls": "workspace:^1.0.0",
     "@jswork/simple-date-format": "^1.0.5",
     "@types/react": "^18.2.28",
     "@types/react-dom": "^18.2.13",
