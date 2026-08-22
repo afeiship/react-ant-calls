@@ -14,7 +14,7 @@ export interface CallableModalRenderProps<P, R> {
 
 type RenderFn<P, R> = FC<CallableModalRenderProps<P, R>>;
 
-export function createCallableModal<P, R>(render: RenderFn<P, R>): Callable<P, R> {
+export function createCallableModal<P, R>(render: RenderFn<P, R>): Callable<P, R, {}> {
   return createCallable<P, R>(({ call, ...rest }) => {
     const [open, setOpen] = useState(false);
     const resultRef = useRef<R>(null as R);

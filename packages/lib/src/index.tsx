@@ -8,10 +8,10 @@ import { msg } from './msg';
 import { notif } from './notification';
 
 export interface Calls {
-  alert: Callable<AlertProps, void>;
-  confirm: Callable<ConfirmProps, boolean>;
-  prompt: Callable<PromptProps, string | null>;
-  dialog: Callable<DialogProps, boolean>;
+  alert: Callable<AlertProps, void, {}>;
+  confirm: Callable<ConfirmProps, boolean, {}>;
+  prompt: Callable<PromptProps, string | null, {}>;
+  dialog: Callable<DialogProps, boolean, {}>;
   msg: typeof msg;
   notif: typeof notif;
 }
