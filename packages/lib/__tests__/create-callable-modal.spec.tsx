@@ -1,9 +1,9 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { createCallableModal } from '../src/create-callable-modal';
 import { Modal } from 'antd';
 
 describe('createCallableModal', () => {
-  it('should render and close with result', async () => {
+  it('should render without throwing', () => {
     const TestModal = createCallableModal<{ message: string }, string>(
       ({ props, api }) => (
         <Modal
@@ -19,10 +19,6 @@ describe('createCallableModal', () => {
     );
     TestModal.displayName = 'TestModal';
 
-    // Simulate react-call invoking the component
-    render(<TestModal />);
-    // The factory sets open=true on mount
-    // We can't easily test the full react-call lifecycle in isolation,
-    // but we can verify the component structure renders
+    expect(() => render(<TestModal />)).not.toThrow();
   });
 });
