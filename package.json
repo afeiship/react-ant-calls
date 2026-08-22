@@ -1,0 +1,19 @@
+{
+  "name": "@jswork/react-ant-calls",
+  "version": "1.0.0",
+  "description": "Callable antd modals, prompts, messages, and notifications via react-call provider and hook.",
+  "homepage": "https://js.work",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "cd packages/example && yarn run dev",
+    "docs": "node scripts/markdown.js",
+    "pre:build": "yarn run docs",
+    "test": "cd packages/lib && yarn run test",
+    "build": "cd packages/lib && yarn run build",
+    "publish": "cd packages/lib && yarn run release"
+  }
+}
