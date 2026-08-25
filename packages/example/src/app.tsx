@@ -27,7 +27,7 @@ function App() {
   const handleDialog = async () => {
     const ok = await dialog.call({
       title: '自定义弹窗',
-      children: <div>这里是任意 React 内容的对话框。</div>,
+      children: <div className='debug p-2 rounded-md bg-gray-100'>这里是任意 React 内容的对话框。</div>,
       okText: '知道了',
     });
     if (ok) msg.success('对话框已确认');
