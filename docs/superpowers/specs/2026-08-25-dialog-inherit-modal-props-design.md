@@ -38,17 +38,33 @@ export interface DialogProps extends ModalProps {}
 ### 3. 受控属性覆盖
 
 ```tsx
+import { Modal } from 'antd';
+import type { ModalProps } from 'antd';
+import { createContext, useContext } from 'react';
+import { createCallableModal } from './create-callable-modal';
+
+export interface DialogProps extends ModalProps {}
+
+const DialogCloseContext = createContext<(result: boolean) => void>(() => {});
+
+export function useDialogClose() {
+  return useContext(DialogCloseContext);
+}
+
 export const Dialog = createCallableModal<DialogProps, boolean>(
   ({ props, api }) => (
-    <Modal
-      {...props}
-      open={api.open}
-      onOk={() => api.close(true)}
-      onCancel={() => api.close(false)}
-      afterClose={api.afterClose}
-    />
+    <DialogCloseContext.Provider value={api.close}>
+      <Modal
+        {...props}
+        open={api.open}
+        onOk={() => api.close(true)}
+        onCancel={() => api.close(false)}
+        afterClose={api.afterClose}
+      />
+    </DialogCloseContext.Provider>
   )
 );
+Dialog.displayName = 'Dialog';
 ```
 
 覆盖规则：
