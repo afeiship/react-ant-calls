@@ -1,11 +1,21 @@
 {
   "git": {
-    "requireCleanWorkingDir": false
+    "requireCleanWorkingDir": false,
+    "commit": true,
+    "tag": true,
+    "push": true,
+    "commitMessage": "chore: release ${version}"
   },
   "hooks": {
-    "after:init": ["t2k"],
-    "after:bump": ["yarn run build"],
-    "after:release": ["yarn pkg get name | cnpm sync"]
+    "after:init": [
+      "t2k"
+    ],
+    "after:bump": [
+      "yarn run build"
+    ],
+    "after:release": [
+      "yarn pkg get name | cnpm sync"
+    ]
   },
   "github": {
     "release": true,
